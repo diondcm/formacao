@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{DF618E62-49D6-44E6-9A06-FC3656CE6183}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Overview.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="OverviewCMD.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="OverviewMulti.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="OverviewServer.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Overview">
+        <MSBuild Projects="Overview.dproj"/>
+    </Target>
+    <Target Name="Overview:Clean">
+        <MSBuild Projects="Overview.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Overview:Make">
+        <MSBuild Projects="Overview.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="OverviewCMD">
+        <MSBuild Projects="OverviewCMD.dproj"/>
+    </Target>
+    <Target Name="OverviewCMD:Clean">
+        <MSBuild Projects="OverviewCMD.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="OverviewCMD:Make">
+        <MSBuild Projects="OverviewCMD.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="OverviewMulti">
+        <MSBuild Projects="OverviewMulti.dproj"/>
+    </Target>
+    <Target Name="OverviewMulti:Clean">
+        <MSBuild Projects="OverviewMulti.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="OverviewMulti:Make">
+        <MSBuild Projects="OverviewMulti.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="OverviewServer">
+        <MSBuild Projects="OverviewServer.dproj"/>
+    </Target>
+    <Target Name="OverviewServer:Clean">
+        <MSBuild Projects="OverviewServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="OverviewServer:Make">
+        <MSBuild Projects="OverviewServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Overview;OverviewCMD;OverviewMulti;OverviewServer"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Overview:Clean;OverviewCMD:Clean;OverviewMulti:Clean;OverviewServer:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Overview:Make;OverviewCMD:Make;OverviewMulti:Make;OverviewServer:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -9,7 +9,8 @@ uses
   IdHTTPWebBrokerBridge,
   Form.Server in 'Form.Server.pas' {frmServer},
   ServerMethodsUnit1 in 'ServerMethodsUnit1.pas' {ServerMethods1: TDSServerModule},
-  WebModuleUnit1 in 'WebModuleUnit1.pas' {WebModule1: TWebModule};
+  WebModuleUnit1 in 'WebModuleUnit1.pas' {WebModule1: TWebModule},
+  Classes.Hash in 'Classes.Hash.pas';
 
 {$R *.res}
 

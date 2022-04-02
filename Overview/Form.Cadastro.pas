@@ -25,9 +25,6 @@ type
     PanelOpcoes: TPanel;
     PanelDados: TPanel;
     Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
     Button5: TButton;
     Label1: TLabel;
     EditCodigo: TEdit;
@@ -90,6 +87,8 @@ begin
   obj.Nome := EditNome.Text;
   obj.CPF := EditCPF.Text;
   obj.Ativo := CheckBoxAtivo.Checked;
+
+  // Num sistema real, teriamos alguma serealização(DB, JSON, XML, TXT)
 
   obj.Free;
 end;

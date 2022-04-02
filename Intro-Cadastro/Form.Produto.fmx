@@ -1,0 +1,123 @@
+object frmProduto: TfrmProduto
+  Left = 0
+  Top = 0
+  Caption = 'Produto'
+  ClientHeight = 480
+  ClientWidth = 640
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object BindNavigator1: TBindNavigator
+    Align = MostTop
+    Size.Width = 640.000000000000000000
+    Size.Height = 41.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    DataSource = BindSourceDB1
+    xRadius = 4.000000000000000000
+    yRadius = 4.000000000000000000
+  end
+  object TabControlProduto: TTabControl
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 439.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 0
+    TabOrder = 1
+    TabPosition = PlatformDefault
+    Sizes = (
+      640s
+      413s
+      640s
+      413s
+      640s
+      413s)
+    object TabPesquisa: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 70.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Pesquisar'
+      ExplicitSize.cx = 70.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+      object StringGrid1: TStringGrid
+        Align = Client
+        CanFocus = True
+        ClipChildren = True
+        Size.Width = 640.000000000000000000
+        Size.Height = 391.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 636.000000000000000000
+        Viewport.Height = 366.000000000000000000
+      end
+      object StatusBar1: TStatusBar
+        Position.Y = 391.000000000000000000
+        ShowSizeGrip = True
+        Size.Width = 640.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+      end
+    end
+    object TabCadastro: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 67.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Cadastro'
+      ExplicitSize.cx = 67.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+    end
+    object TabQrCode: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 62.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'QrCode'
+      ExplicitSize.cx = 62.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
+    end
+  end
+  object dtsProduto: TDataSource
+    DataSet = dmdProduto.qryProduto
+    Left = 424
+    Top = 160
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSource = dtsProduto
+    ScopeMappings = <>
+    Left = 304
+    Top = 224
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 20
+    Top = 5
+    object LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      GridControl = StringGrid1
+      Columns = <>
+    end
+  end
+end

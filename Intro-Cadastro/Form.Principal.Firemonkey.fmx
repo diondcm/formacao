@@ -1,0 +1,34 @@
+object frmPrincipal: TfrmPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro'
+  ClientHeight = 532
+  ClientWidth = 868
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Layout1: TLayout
+    Align = Center
+    Size.Width = 418.000000000000000000
+    Size.Height = 354.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object ButtonProduto: TButton
+      Align = Center
+      Size.Width = 153.000000000000000000
+      Size.Height = 65.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Produto'
+      OnClick = ButtonProdutoClick
+      object GlowEffect1: TGlowEffect
+        Softness = 0.400000005960464500
+        GlowColor = claDarkslategray
+        Opacity = 0.899999976158142100
+        Trigger = 'IsMouseOver=true'
+      end
+    end
+  end
+end

@@ -5,7 +5,8 @@ uses
   FMX.Forms,
   Form.Principal.Firemonkey in 'Form.Principal.Firemonkey.pas' {frmPrincipal},
   Form.Produto in 'Form.Produto.pas' {frmProduto},
-  Data.Produto in 'Data.Produto.pas' {dmdProduto: TDataModule};
+  Data.Produto in 'Data.Produto.pas' {dmdProduto: TDataModule},
+  Classe.QrCode in 'Classe.QrCode.pas';
 
 {$R *.res}
 

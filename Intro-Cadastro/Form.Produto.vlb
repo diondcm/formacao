@@ -1,7 +1,4 @@
-﻿[BindNavigator1]
-Coordinates=126,10,90,51
-
-[TabCadastro]
+﻿[TabCadastro]
 Coordinates=109,146,77,33
 
 [TabPesquisa]
@@ -9,13 +6,14 @@ Coordinates=10,146,77,33
 
 [TabControlProduto]
 Coordinates=189,100,108,33
+Visible=True
 
 [dtsProduto]
 Coordinates=80,77,69,33
 Visible=False
 
 [StringGrid1]
-Coordinates=580,20,70,51
+Coordinates=580,20,70,105
 Visible=True
 
 [TabQrCode]
@@ -25,14 +23,80 @@ Coordinates=98,100,70,33
 Coordinates=10,100,68,33
 
 [BindSourceDB1]
-Coordinates=400,0,92,87
+Coordinates=400,0,92,213
 
 []
-Coordinates=141,195,91,36
+Coordinates=431,302,53,51
+Visible=True
 
 [BindingsList1]
 Coordinates=350,1,82,33
 
 [dmdProduto.qryProduto]
-Coordinates=470,106,133,51
+Coordinates=770,120,133,141
+
+[dmdProduto.RESTRequest1]
+Coordinates=470,196,152,87
+
+[dmdProduto.memWSProduto]
+Coordinates=235,152,158,123
+
+[Splitter1]
+Coordinates=68,1,55,33
+
+[dmdProduto.RESTResponse1]
+Coordinates=70,198,160,303
+
+[dmdProduto.RESTClient1]
+Coordinates=688,1,140,69
+
+[LabelTotal]
+Coordinates=281,1,65,51
+
+[LabelURLImagem]
+Coordinates=640,130,101,51
+Visible=True
+
+[ImageProduto]
+Coordinates=0,0,83,51
+
+[NetHTTPClient1]
+Coordinates=142,1,92,33
+
+[Layout2]
+Coordinates=109,53,53,33
+
+[EditDescricao]
+Coordinates=870,40,83,51
+
+[EditTitulo]
+Coordinates=680,190,61,51
+Visible=True
+
+[EditPreco]
+Coordinates=680,260,62,51
+
+[Layout3]
+Coordinates=372,539,53,33
+
+[Label3]
+Coordinates=431,442,46,51
+
+[Label1]
+Coordinates=431,178,46,51
+
+[Layout1]
+Coordinates=313,539,53,33
+
+[Label2]
+Coordinates=431,372,46,51
+
+[BindNavigator1]
+Coordinates=530,144,90,51
+
+[ImageQrCode]
+Coordinates=530,302,81,51
+
+[dmdProduto.qryImagens]
+Coordinates=431,512,136,105
 

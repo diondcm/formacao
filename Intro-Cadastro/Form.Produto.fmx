@@ -27,7 +27,7 @@ object frmProduto: TfrmProduto
     Size.Width = 640.000000000000000000
     Size.Height = 439.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 1
     TabPosition = PlatformDefault
     Sizes = (
@@ -41,7 +41,7 @@ object frmProduto: TfrmProduto
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 70.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -110,7 +110,7 @@ object frmProduto: TfrmProduto
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 67.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False

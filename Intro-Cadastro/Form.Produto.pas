@@ -68,12 +68,15 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
+{$REGION 'Vars da tela'}
     FCacheImagens: TDictionary<string, TCacheProduto>;
     FJaInicializou: Boolean;
+{$ENDREGION}
+{$REGION 'Imagem do Produto'}
     procedure CarregarImagemProduto;
     procedure CarregarQrCode;
+{$ENDREGION}
   public
-    { Public declarations }
   end;
 
 var
@@ -85,39 +88,84 @@ implementation
 
 procedure TfrmProduto.CarregarImagemProduto;
 begin
-  //Aqui é main thread
-  TThread.CreateAnonymousThread(
-    procedure
+//  TThread.NameThreadForDebugging('Principal');
+  if dmdProduto.qryProduto.IsEmpty or (dmdProduto.qryProdutoURL_IMAGEM.AsString = '') then
+  begin
+    Exit;
+  end;
+
+  if (not FCacheImagens.ContainsKey(dmdProduto.qryProdutoURL_IMAGEM.AsString)) or
+    (FCacheImagens[dmdProduto.qryProdutoURL_IMAGEM.AsString].FImage.Size = 0) then
+  begin
+{$REGION 'Thread download imagem'}
+    dmdProduto.qryImagens.Close;
+    dmdProduto.qryImagens.ParamByName('ID_PRODUTO').AsInteger := dmdProduto.qryProdutoID.AsInteger;
+    dmdProduto.qryImagens.Open;
+    dmdProduto.qryImagens.FetchBlobs;
+
+    if dmdProduto.qryImagens.IsEmpty or (dmdProduto.qryImagensIMAGEM.BlobSize = 0) then
     begin
-      //Aqui é thread local
-      //  var lBytes: TBytesStream := TBytesStream.Create;
-        var lmem: TMemoryStream := TMemoryStream.Create;
+      var urlImagem: string := dmdProduto.qryProdutoURL_IMAGEM.AsString;
+      var idProduto: Integer := dmdProduto.qryProdutoID.AsInteger;
 
-      //  IdHTTP1.Get(dmdProduto.qryProdutoURL_IMAGEM.AsString, lBytes);
-        var netClient: TNetHTTPClient := TNetHTTPClient.Create(nil);
+      //Aqui é main thread
+      TThread.CreateAnonymousThread(
+        procedure
+        begin
+          TThread.NameThreadForDebugging('Anonymous');
 
-        if not FCacheImagens.ContainsKey(dmdProduto.qryProdutoURL_IMAGEM.AsString) then
-          netClient.Get(dmdProduto.qryProdutoURL_IMAGEM.AsString, lmem);
+          //Aqui é thread local
+          //  var lBytes: TBytesStream := TBytesStream.Create;
+            var memImg: TMemoryStream := TMemoryStream.Create;
 
-        TThread.Synchronize(nil,
-          procedure
-          begin
-            //Aqui é main thread
-            if not FCacheImagens.ContainsKey(dmdProduto.qryProdutoURL_IMAGEM.AsString) then
-            begin
-//              FCacheImagens.Add(dmdProduto.qryProdutoURL_IMAGEM.AsString, lmem);
-            end;
+          //  IdHTTP1.Get(dmdProduto.qryProdutoURL_IMAGEM.AsString, lBytes);
+            var netClient: TNetHTTPClient := TNetHTTPClient.Create(nil);
 
-//            ImageProduto.Bitmap.LoadFromStream(FCacheImagens[dmdProduto.qryProdutoURL_IMAGEM.AsString]);
-          //  ImageProduto.Bitmap.LoadFromStream(lmem);
-          end);
+            netClient.Get(urlImagem, memImg);
+            memImg.Position := 0;
 
-        //Aqui é thread Local
-        netClient.Free;
+            TThread.Synchronize(nil,
+              procedure
+              begin
+                if dmdProduto.qryImagens.Locate('ID_PRODUTO', idProduto) then
+                begin
+                  dmdProduto.qryImagens.Edit;
+                end else begin
+                  dmdProduto.qryImagens.Append;
+                  dmdProduto.qryImagensID_PRODUTO.AsInteger := idProduto;
+                end;
 
-      //  lBytes.Free; // Movido para o Destroy
-//        lmem.Free;
-    end).Start;
+                dmdProduto.qryImagensIMAGEM.LoadFromStream(memImg);
+                dmdProduto.qryImagens.Post;
+
+                if not FCacheImagens.ContainsKey(dmdProduto.qryProdutoURL_IMAGEM.AsString) then
+                begin
+                  FCacheImagens.Add(dmdProduto.qryProdutoURL_IMAGEM.AsString, TCacheProduto.Create);
+                end;
+
+                dmdProduto.qryImagensIMAGEM.SaveToStream(FCacheImagens[dmdProduto.qryProdutoURL_IMAGEM.AsString].FImage);
+
+                ImageProduto.Bitmap.LoadFromStream(FCacheImagens[dmdProduto.qryProdutoURL_IMAGEM.AsString].FImage);
+              end);
+
+            //Aqui é thread Local
+            netClient.Free;
+
+          //  lBytes.Free; // Movido para o Destroy
+    //        lmem.Free;
+        end).Start;
+    end else begin
+      if not FCacheImagens.ContainsKey(dmdProduto.qryProdutoURL_IMAGEM.AsString) then
+      begin
+        FCacheImagens.Add(dmdProduto.qryProdutoURL_IMAGEM.AsString, TCacheProduto.Create);
+      end;
+      dmdProduto.qryImagensIMAGEM.SaveToStream(FCacheImagens[dmdProduto.qryProdutoURL_IMAGEM.AsString].FImage);
+      ImageProduto.Bitmap.LoadFromStream(FCacheImagens[dmdProduto.qryProdutoURL_IMAGEM.AsString].FImage);
+    end;
+{$ENDREGION}
+  end else begin
+    ImageProduto.Bitmap.LoadFromStream(FCacheImagens[dmdProduto.qryProdutoURL_IMAGEM.AsString].FImage);
+  end;
 end;
 
 procedure TfrmProduto.CarregarQrCode;
@@ -127,6 +175,7 @@ begin
     Exit;
   end;
 
+{$REGION 'Carrega Imagem'}
   if (not FCacheImagens.ContainsKey(dmdProduto.qryProdutoURL_IMAGEM.AsString)) or
     (FCacheImagens[dmdProduto.qryProdutoURL_IMAGEM.AsString].FQrCode.Size = 0) then
   begin
@@ -163,6 +212,7 @@ begin
 
     dmdProduto.qryImagensQR_CODE.SaveToStream(FCacheImagens[dmdProduto.qryProdutoURL_IMAGEM.AsString].FQrCode);
   end;
+{$ENDREGION}
 
   ImageQrCode.Bitmap.LoadFromStream(FCacheImagens[dmdProduto.qryProdutoURL_IMAGEM.AsString].FQrCode);
 end;

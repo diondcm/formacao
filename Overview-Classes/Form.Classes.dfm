@@ -1,18 +1,13 @@
-object frmCalsses: TfrmCalsses
-  Left = 0
-  Top = 0
+inherited frmClasses: TfrmClasses
   Caption = 'Classes'
-  ClientHeight = 433
-  ClientWidth = 622
-  Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -12
-  Font.Name = 'Segoe UI'
-  Font.Style = []
-  Position = poScreenCenter
+  ClientHeight = 490
+  ExplicitHeight = 537
   PixelsPerInch = 96
   TextHeight = 15
+  inherited StatusBarContato: TStatusBar
+    Top = 471
+    ExplicitTop = 471
+  end
   object ButtonCachorro: TButton
     Left = 32
     Top = 24

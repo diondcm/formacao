@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client, Vcl.ComCtrls, Form.Base, Vcl.ExtCtrls;
 
 type
   { Meta classe = Classe Abstrata }
@@ -60,7 +60,7 @@ type
     property DeveFicarSo: Boolean read FDeveFicarSo write FDeveFicarSo;
   end;
 
-  TfrmCalsses = class(TForm)
+  TfrmClasses = class(TfrmBase)
     ButtonCachorro: TButton;
     ButtonGato: TButton;
     Memo1: TMemo;
@@ -81,7 +81,7 @@ type
   end;
 
 var
-  frmCalsses: TfrmCalsses;
+  frmClasses: TfrmClasses;
 
 implementation
 
@@ -104,7 +104,7 @@ begin
   ShowMessage('Cachorro: Nada');
 end;
 
-procedure TfrmCalsses.Button1Click(Sender: TObject);
+procedure TfrmClasses.Button1Click(Sender: TObject);
 begin
   ShowMessage(Sender.ClassName);
 
@@ -113,7 +113,7 @@ begin
 //  ShowMessage(Memo1.Lines.ClassName)
 end;
 
-procedure TfrmCalsses.ButtonCachorroClick(Sender: TObject);
+procedure TfrmClasses.ButtonCachorroClick(Sender: TObject);
 begin
   var cao: TCachorro := TCachorro.Create;
   cao.ID := GetTickCount;
@@ -135,7 +135,7 @@ begin
   ShowMessage(ClassName + ' nada');
 end;
 
-procedure TfrmCalsses.ButtonGatoClick(Sender: TObject);
+procedure TfrmClasses.ButtonGatoClick(Sender: TObject);
 begin
   var g: TGato := TGato.Create;
   g.ID := GetTickCount;
@@ -144,7 +144,7 @@ begin
   g.Free;
 end;
 
-procedure TfrmCalsses.ButtonPassearClick(Sender: TObject);
+procedure TfrmClasses.ButtonPassearClick(Sender: TObject);
 begin
   var listaAnimais: TList<TMamifero> := TList<TMamifero>.Create;
 

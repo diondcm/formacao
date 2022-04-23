@@ -1,19 +1,16 @@
-object frmReferencia: TfrmReferencia
-  Left = 0
-  Top = 0
+inherited frmReferencia: TfrmReferencia
   Caption = 'Refer'#234'ncia'
   ClientHeight = 531
   ClientWidth = 770
-  Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
-  Font.Height = -12
-  Font.Name = 'Segoe UI'
-  Font.Style = []
-  Position = poScreenCenter
   OnCreate = FormCreate
+  ExplicitWidth = 788
+  ExplicitHeight = 578
   PixelsPerInch = 96
   TextHeight = 15
+  inherited StatusBarContato: TStatusBar
+    Top = 512
+    Width = 770
+  end
   object Button1: TButton
     Left = 32
     Top = 40

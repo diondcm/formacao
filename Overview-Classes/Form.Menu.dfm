@@ -58,21 +58,23 @@ object frmMenu: TfrmMenu
       TabOrder = 3
       OnClick = ButtonTestesClick
     end
-    object Button5: TButton
+    object ButtonInstancia: TButton
       Left = 1
       Top = 177
       Width = 248
       Height = 88
-      Caption = 'Button1'
+      Caption = 'Inst'#226'ncia'
       TabOrder = 4
+      OnClick = ButtonInstanciaClick
     end
-    object Button6: TButton
+    object ButtonStackEHeap: TButton
       Left = 249
       Top = 177
       Width = 248
       Height = 88
-      Caption = 'Button1'
+      Caption = 'Stack && Heap'
       TabOrder = 5
+      OnClick = ButtonStackEHeapClick
     end
   end
   object StatusBarContato: TStatusBar
@@ -93,6 +95,7 @@ object frmMenu: TfrmMenu
       end>
   end
   object TimerLogin: TTimer
+    Enabled = False
     OnTimer = TimerLoginTimer
     Left = 544
     Top = 312

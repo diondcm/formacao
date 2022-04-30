@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Form.Classes,
-  Form.Generico, Form.Referencia, Form.Testes, Vcl.ComCtrls, Form.Login;
+  Form.Generico, Form.Referencia, Form.Testes, Vcl.ComCtrls, Form.Login,
+  Form.Instancia, Form.StackEHeap;
 
 type
   TfrmMenu = class(TForm)
@@ -14,8 +15,8 @@ type
     ButtonGenerics: TButton;
     ButtonReferencia: TButton;
     ButtonTestes: TButton;
-    Button5: TButton;
-    Button6: TButton;
+    ButtonInstancia: TButton;
+    ButtonStackEHeap: TButton;
     StatusBarContato: TStatusBar;
     TimerLogin: TTimer;
     procedure ButtonClassesClick(Sender: TObject);
@@ -24,6 +25,8 @@ type
     procedure ButtonTestesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure TimerLoginTimer(Sender: TObject);
+    procedure ButtonInstanciaClick(Sender: TObject);
+    procedure ButtonStackEHeapClick(Sender: TObject);
   private
     { Private declarations }
     procedure AbreFormModal(pClasse: TFormClass);
@@ -50,7 +53,7 @@ end;
 
 procedure TfrmMenu.FormCreate(Sender: TObject);
 begin
-  TimerLogin.Enabled := True;
+//  TimerLogin.Enabled := True;
 end;
 
 procedure TfrmMenu.TimerLoginTimer(Sender: TObject);
@@ -85,6 +88,13 @@ begin
   AbreFormModal(TfrmReferencia);
 end;
 
+procedure TfrmMenu.ButtonStackEHeapClick(Sender: TObject);
+begin
+//  frmStackEHeap.ShowModal;
+
+  AbreFormModal(TfrmStackEHeap);
+end;
+
 procedure TfrmMenu.AbreFormModal(pClasse: TFormClass);
 begin
   // Valido controle de acesso
@@ -92,6 +102,11 @@ begin
   var frm: TForm := pClasse.Create(Application);
   frm.ShowModal;
   frm.Free;
+end;
+
+procedure TfrmMenu.ButtonInstanciaClick(Sender: TObject);
+begin
+  AbreFormModal(TfrmInstancia);
 end;
 
 procedure TfrmMenu.ButtonClassesClick(Sender: TObject);

@@ -101,8 +101,8 @@ type
   TResidencias = set of TTipoResidencia;
 
 var
-  ltipoEnd: TTipoEndereco;
-  res: TResidencias;
+//  ltipoEnd: TTipoEndereco;
+//  res: TResidencias;
 
   lproc: TProc;
 begin

@@ -1,6 +1,6 @@
 object dmdBase: TdmdBase
-  Height = 484
-  Width = 749
+  Height = 414
+  Width = 724
   PixelsPerInch = 120
   object qryDados: TFDQuery
     Left = 160

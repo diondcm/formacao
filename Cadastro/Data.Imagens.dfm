@@ -1,7 +1,7 @@
 object dmdImagens: TdmdImagens
+  OldCreateOrder = True
   Height = 251
   Width = 486
-  PixelsPerInch = 120
   object ImageListBase: TImageList
     Height = 40
     Width = 40

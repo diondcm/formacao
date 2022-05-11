@@ -1,7 +1,7 @@
 object dmdBase: TdmdBase
+  OldCreateOrder = True
   Height = 414
   Width = 724
-  PixelsPerInch = 120
   object qryDados: TFDQuery
     Left = 160
     Top = 192

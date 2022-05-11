@@ -1,7 +1,7 @@
 object dmdConnection: TdmdConnection
+  OldCreateOrder = True
   Height = 421
   Width = 734
-  PixelsPerInch = 120
   object SQLConnection: TSQLConnection
     Left = 352
     Top = 120

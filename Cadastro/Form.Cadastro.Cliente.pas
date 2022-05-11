@@ -32,7 +32,7 @@ procedure TfrmCadastroCliente.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   inherited;
-  Action := TCloseAction.caFree;
+//  Action := TCloseAction.caFree;
 end;
 
 procedure TfrmCadastroCliente.FormCreate(Sender: TObject);

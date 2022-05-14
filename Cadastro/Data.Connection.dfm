@@ -1,12 +1,18 @@
 object dmdConnection: TdmdConnection
-  OldCreateOrder = True
-  Height = 421
-  Width = 734
+  Height = 251
+  Width = 486
+  PixelsPerInch = 120
   object SQLConnection: TSQLConnection
     Left = 352
     Top = 120
   end
   object FDConnection: TFDConnection
+    Params.Strings = (
+      
+        'Database=C:\Desenv\Aqua\Exemplo-Formacao\Cadastro\Win32\Debug\te' +
+        'steCadastro.db'
+      'DriverID=SQLite')
+    LoginPrompt = False
     Left = 80
     Top = 120
   end

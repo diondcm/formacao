@@ -10,7 +10,11 @@ uses
   Form.Base.Cadastro in 'Form.Base.Cadastro.pas' {frmBaseCadastro},
   Form.Cadastro.Cliente in 'Form.Cadastro.Cliente.pas' {frmCadastroCliente},
   Form.Cadastro.Produto in 'Form.Cadastro.Produto.pas' {frmCadastroProduto},
-  Data.Imagens in 'Data.Imagens.pas' {dmdImagens: TDataModule};
+  Data.Imagens in 'Data.Imagens.pas' {dmdImagens: TDataModule},
+  Data.Produto in 'Data.Produto.pas' {dmdProduto: TDataModule},
+  Data.Pedido in 'Data.Pedido.pas' {dmdPedido: TDataModule},
+  Form.Cadastro.Pedido in 'Form.Cadastro.Pedido.pas' {frmCadPedidos},
+  Form.Cadastro.Item in 'Form.Cadastro.Item.pas' {frmCadastroItem};
 
 {$R *.res}
 

@@ -38,6 +38,13 @@ type
     dtsDados: TDataSource;
     ImageLogoCadastro: TImage;
     ButtonImagemTemp: TBitBtn;
+    TimerOpen: TTimer;
+    StatusBarPesquisa: TStatusBar;
+    procedure FormShow(Sender: TObject);
+    procedure TimerOpenTimer(Sender: TObject);
+    procedure dtsDadosStateChange(Sender: TObject);
+    procedure DBGridDadosDblClick(Sender: TObject);
+    procedure dtsDadosDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
   public
@@ -47,5 +54,49 @@ type
 implementation
 
 {$R *.dfm}
+
+procedure TfrmBaseCadastro.DBGridDadosDblClick(Sender: TObject);
+begin
+  if Assigned(dtsDados.DataSet) then
+  begin
+    if (dtsDados.DataSet.Active) and (not dtsDados.DataSet.IsEmpty) then
+    begin
+      dtsDados.DataSet.Edit;
+    end;
+  end;
+end;
+
+procedure TfrmBaseCadastro.dtsDadosDataChange(Sender: TObject; Field: TField);
+begin
+  StatusBarPesquisa.Panels[1].Text := 'Registro ' + FormatFloat('0.,', dtsDados.DataSet.RecNo) + ' de ' + FormatFloat('0.,', dtsDados.DataSet.RecordCount);
+end;
+
+procedure TfrmBaseCadastro.dtsDadosStateChange(Sender: TObject);
+begin
+  case dtsDados.State of
+    dsBrowse: PageControl.ActivePage := TabPesquisa;
+
+    dsInsert, dsEdit:
+      PageControl.ActivePage := TabCadastro;
+  end;
+end;
+
+procedure TfrmBaseCadastro.FormShow(Sender: TObject);
+begin
+  PageControl.ActivePage := TabPesquisa;
+  TimerOpen.Enabled := True;
+end;
+
+procedure TfrmBaseCadastro.TimerOpenTimer(Sender: TObject);
+begin
+  TimerOpen.Enabled := False;
+
+  if not Assigned(dtsDados.DataSet) then // Evita AV em runtime
+  begin
+    raise Exception.Create('Qry não informada no ' + dtsDados.Name);
+  end;
+
+  dtsDados.DataSet.Open;
+end;
 
 end.

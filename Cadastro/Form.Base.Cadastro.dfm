@@ -2,8 +2,7 @@ inherited frmBaseCadastro: TfrmBaseCadastro
   Caption = ''
   ClientHeight = 442
   ClientWidth = 968
-  ExplicitLeft = 3
-  ExplicitTop = 3
+  OnShow = FormShow
   ExplicitWidth = 986
   ExplicitHeight = 489
   PixelsPerInch = 96
@@ -16,7 +15,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
     Height = 62
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 616
     object ImageLogoCadastro: TImage
       AlignWithMargins = True
       Left = 4
@@ -39,9 +37,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
       Align = alLeft
       Caption = '&Inserir'
       TabOrder = 0
-      ExplicitLeft = 272
-      ExplicitTop = 8
-      ExplicitHeight = 25
     end
     object ButtonEditar: TBitBtn
       AlignWithMargins = True
@@ -53,8 +48,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
       Align = alLeft
       Caption = '&Editar'
       TabOrder = 1
-      ExplicitLeft = 132
-      ExplicitTop = 5
     end
     object ButtonCancelar: TBitBtn
       AlignWithMargins = True
@@ -66,7 +59,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
       Align = alLeft
       Caption = '&Cancelar'
       TabOrder = 2
-      ExplicitLeft = 221
     end
     object ButtonSalvar: TBitBtn
       AlignWithMargins = True
@@ -78,7 +70,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
       Align = alLeft
       Caption = '&Salvar'
       TabOrder = 3
-      ExplicitLeft = 328
     end
     object ButtonDeletar: TBitBtn
       AlignWithMargins = True
@@ -90,8 +81,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
       Align = alLeft
       Caption = '&Deletar'
       TabOrder = 4
-      ExplicitLeft = 429
-      ExplicitTop = 12
     end
     object ButtonPrimeiro: TBitBtn
       AlignWithMargins = True
@@ -103,7 +92,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
       Align = alLeft
       Caption = 'P&rimeiro'
       TabOrder = 5
-      ExplicitLeft = 533
     end
     object ButtonAnterior: TBitBtn
       AlignWithMargins = True
@@ -115,7 +103,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
       Align = alLeft
       Caption = '&Anterior'
       TabOrder = 6
-      ExplicitLeft = 541
     end
     object ButtonProximo: TBitBtn
       AlignWithMargins = True
@@ -127,8 +114,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
       Align = alLeft
       Caption = 'P&r'#243'ximo'
       TabOrder = 7
-      ExplicitLeft = 637
-      ExplicitTop = -12
     end
     object ButtonUltimo: TBitBtn
       AlignWithMargins = True
@@ -142,7 +127,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
       Caption = '&'#218'ltimo'
       TabOrder = 8
       WordWrap = True
-      ExplicitLeft = 763
     end
     object ButtonImagemTemp: TBitBtn
       AlignWithMargins = True
@@ -154,8 +138,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
       ImageIndex = 3
       TabOrder = 9
       WordWrap = True
-      ExplicitLeft = 75
-      ExplicitTop = -20
     end
   end
   object PageControl: TPageControl
@@ -167,23 +149,42 @@ inherited frmBaseCadastro: TfrmBaseCadastro
     ActivePage = TabPesquisa
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 763
-    ExplicitHeight = 359
     object TabPesquisa: TTabSheet
       Caption = 'Pesquisar'
       object DBGridDados: TDBGrid
         Left = 0
         Top = 0
         Width = 954
-        Height = 338
+        Height = 319
         Align = alClient
         DataSource = dtsDados
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -12
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
+        OnDblClick = DBGridDadosDblClick
+      end
+      object StatusBarPesquisa: TStatusBar
+        Left = 0
+        Top = 319
+        Width = 954
+        Height = 19
+        Panels = <
+          item
+            Width = 250
+          end
+          item
+            Width = 200
+          end
+          item
+            Width = 50
+          end>
+        ExplicitLeft = 480
+        ExplicitTop = 160
+        ExplicitWidth = 0
       end
     end
     object TabCadastro: TTabSheet
@@ -266,7 +267,15 @@ inherited frmBaseCadastro: TfrmBaseCadastro
     end
   end
   object dtsDados: TDataSource
+    OnStateChange = dtsDadosStateChange
+    OnDataChange = dtsDadosDataChange
     Left = 464
     Top = 144
+  end
+  object TimerOpen: TTimer
+    Enabled = False
+    OnTimer = TimerOpenTimer
+    Left = 488
+    Top = 240
   end
 end

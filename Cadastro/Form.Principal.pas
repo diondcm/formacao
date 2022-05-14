@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ToolWin, Vcl.ActnMan, Vcl.ActnCtrls,
   System.Actions, Vcl.ActnList, Vcl.PlatformDefaultStyleActnCtrls, Vcl.Menus,
   System.ImageList, Vcl.ImgList, Form.Cadastro.Cliente, Vcl.ComCtrls,
-  Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Data.Imagens, Form.Cadastro.Produto;
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Data.Imagens, Form.Cadastro.Produto,
+  Form.Cadastro.Pedido;
 
 type
   TfrmPrincipal = class(TForm)
@@ -19,8 +20,10 @@ type
     CadastrodeClientes1: TMenuItem;
     ActionCadastroProduto: TAction;
     CadastrodeProdutos1: TMenuItem;
+    ActionPedidos: TAction;
     procedure ActionCadastroClientesExecute(Sender: TObject);
     procedure ActionCadastroProdutoExecute(Sender: TObject);
+    procedure ActionPedidosExecute(Sender: TObject);
   private
     procedure AbreFormModal(FormClass: TFormClass);
     procedure AbreFormShow(FormClass: TFormClass);
@@ -56,6 +59,11 @@ end;
 procedure TfrmPrincipal.ActionCadastroProdutoExecute(Sender: TObject);
 begin
   AbreFormModal(TfrmCadastroProduto);
+end;
+
+procedure TfrmPrincipal.ActionPedidosExecute(Sender: TObject);
+begin
+  AbreFormModal(TfrmCadPedidos);
 end;
 
 end.

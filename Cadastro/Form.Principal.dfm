@@ -34,8 +34,6 @@ object frmPrincipal: TfrmPrincipal
     Font.Style = []
     ParentFont = False
     Spacing = 0
-    ExplicitTop = 53
-    ExplicitHeight = 30
   end
   object MainMenu: TMainMenu
     Images = dmdImagens.ImageListBase
@@ -62,6 +60,10 @@ object frmPrincipal: TfrmPrincipal
           item
             Action = ActionCadastroProduto
             ImageIndex = 1
+          end
+          item
+            Action = ActionPedidos
+            Caption = 'C&adastro de Pedidos'
           end>
         ActionBar = ActionToolBar2
       end>
@@ -80,6 +82,10 @@ object frmPrincipal: TfrmPrincipal
       Hint = 'Cadastro de Produto'
       ImageIndex = 1
       OnExecute = ActionCadastroProdutoExecute
+    end
+    object ActionPedidos: TAction
+      Caption = 'Cadastro de Pedidos'
+      OnExecute = ActionPedidosExecute
     end
   end
 end

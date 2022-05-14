@@ -7,7 +7,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Data.FMTBcd, Datasnap.DBClient,
-  Datasnap.Provider, Data.SqlExpr;
+  Datasnap.Provider, Data.SqlExpr, Data.Connection;
 
 type
   TdmdBase = class(TDataModule)

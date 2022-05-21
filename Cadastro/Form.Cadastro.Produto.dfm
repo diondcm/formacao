@@ -1,7 +1,6 @@
 inherited frmCadastroProduto: TfrmCadastroProduto
   Caption = 'Cadastro de Produtos'
   OnCreate = FormCreate
-  PixelsPerInch = 96
   TextHeight = 15
   inherited PanelNavigator: TPanel
     inherited ButtonImagemTemp: TBitBtn

@@ -12,7 +12,6 @@ object frmPrincipal: TfrmPrincipal
   Font.Style = []
   Menu = MainMenu
   Position = poScreenCenter
-  PixelsPerInch = 96
   TextHeight = 15
   object ActionToolBar2: TActionToolBar
     Left = 0

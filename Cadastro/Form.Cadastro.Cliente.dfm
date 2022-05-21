@@ -5,7 +5,6 @@ inherited frmCadastroCliente: TfrmCadastroCliente
   OnCreate = FormCreate
   ExplicitWidth = 1006
   ExplicitHeight = 511
-  PixelsPerInch = 96
   TextHeight = 15
   inherited PanelNavigator: TPanel
     Width = 982

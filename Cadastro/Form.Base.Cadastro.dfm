@@ -5,7 +5,6 @@ inherited frmBaseCadastro: TfrmBaseCadastro
   OnShow = FormShow
   ExplicitWidth = 986
   ExplicitHeight = 489
-  PixelsPerInch = 96
   TextHeight = 15
   object PanelNavigator: TPanel
     AlignWithMargins = True

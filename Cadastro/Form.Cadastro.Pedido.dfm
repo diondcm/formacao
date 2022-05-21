@@ -7,7 +7,6 @@ inherited frmCadPedidos: TfrmCadPedidos
   ExplicitTop = 3
   ExplicitWidth = 1117
   ExplicitHeight = 672
-  PixelsPerInch = 96
   TextHeight = 15
   inherited PanelNavigator: TPanel
     Width = 1093

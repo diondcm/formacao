@@ -6,7 +6,6 @@ inherited frmCadastroItem: TfrmCadastroItem
   ExplicitTop = 3
   ExplicitWidth = 544
   ExplicitHeight = 355
-  PixelsPerInch = 96
   TextHeight = 15
   object PanelPedido: TPanel
     AlignWithMargins = True

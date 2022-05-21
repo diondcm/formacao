@@ -11,6 +11,5 @@ object frmBase: TfrmBase
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poScreenCenter
-  PixelsPerInch = 96
   TextHeight = 15
 end

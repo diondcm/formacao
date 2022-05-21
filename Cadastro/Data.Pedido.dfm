@@ -1,7 +1,6 @@
 inherited dmdPedido: TdmdPedido
   Height = 439
   Width = 720
-  PixelsPerInch = 120
   inherited qryDados: TFDQuery
     AfterOpen = qryDadosAfterOpen
     AfterScroll = qryDadosAfterScroll
@@ -24,6 +23,7 @@ inherited dmdPedido: TdmdPedido
       FieldName = 'IDPEDIDO'
       Origin = 'IDPEDIDO'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qryDadosIDCLIENTE: TIntegerField
       DisplayLabel = 'Cliente'
@@ -108,6 +108,7 @@ inherited dmdPedido: TdmdPedido
       FieldName = 'IDITEM'
       Origin = 'IDITEM'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object qryItensIDPEDIDO: TIntegerField
       DisplayLabel = 'Pedido'

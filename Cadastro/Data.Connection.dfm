@@ -1,7 +1,6 @@
 object dmdConnection: TdmdConnection
   Height = 251
   Width = 486
-  PixelsPerInch = 120
   object SQLConnection: TSQLConnection
     Left = 352
     Top = 120

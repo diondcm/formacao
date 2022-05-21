@@ -1,7 +1,6 @@
 inherited dmdProduto: TdmdProduto
   Height = 431
   Width = 767
-  PixelsPerInch = 120
   inherited qryDados: TFDQuery
     Connection = dmdConnection.FDConnection
     SQL.Strings = (

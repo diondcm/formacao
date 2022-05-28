@@ -2,7 +2,6 @@ inherited dmdCliente: TdmdCliente
   OnCreate = DataModuleCreate
   Height = 448
   Width = 720
-  PixelsPerInch = 120
   inherited qryDados: TFDQuery
     Connection = dmdConnection.FDConnection
     SQL.Strings = (

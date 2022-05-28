@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Form.Classes,
   Form.Generico, Form.Referencia, Form.Testes, Vcl.ComCtrls, Form.Login,
-  Form.Instancia, Form.StackEHeap;
+  Form.Instancia, Form.StackEHeap, Form.Teste.Hash;
 
 type
   TfrmMenu = class(TForm)
@@ -19,6 +19,7 @@ type
     ButtonStackEHeap: TButton;
     StatusBarContato: TStatusBar;
     TimerLogin: TTimer;
+    ButtonHash: TButton;
     procedure ButtonClassesClick(Sender: TObject);
     procedure ButtonGenericsClick(Sender: TObject);
     procedure ButtonReferenciaClick(Sender: TObject);
@@ -27,6 +28,7 @@ type
     procedure TimerLoginTimer(Sender: TObject);
     procedure ButtonInstanciaClick(Sender: TObject);
     procedure ButtonStackEHeapClick(Sender: TObject);
+    procedure ButtonHashClick(Sender: TObject);
   private
     { Private declarations }
     procedure AbreFormModal(pClasse: TFormClass);
@@ -44,6 +46,11 @@ implementation
 procedure TfrmMenu.ButtonGenericsClick(Sender: TObject);
 begin
   AbreFormModal(TfrmGenerico);
+end;
+
+procedure TfrmMenu.ButtonHashClick(Sender: TObject);
+begin
+  AbreFormModal(TfrmTesteHash);
 end;
 
 procedure TfrmMenu.ButtonTestesClick(Sender: TObject);

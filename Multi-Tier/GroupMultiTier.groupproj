@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{CE55051D-0B11-4865-9AEB-02D27579BA2D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Server\ServerMultiTier.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Client\ClienteMultiTier.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ServerMultiTier">
+        <MSBuild Projects="Server\ServerMultiTier.dproj"/>
+    </Target>
+    <Target Name="ServerMultiTier:Clean">
+        <MSBuild Projects="Server\ServerMultiTier.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ServerMultiTier:Make">
+        <MSBuild Projects="Server\ServerMultiTier.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ClienteMultiTier">
+        <MSBuild Projects="Client\ClienteMultiTier.dproj"/>
+    </Target>
+    <Target Name="ClienteMultiTier:Clean">
+        <MSBuild Projects="Client\ClienteMultiTier.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ClienteMultiTier:Make">
+        <MSBuild Projects="Client\ClienteMultiTier.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ServerMultiTier;ClienteMultiTier"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ServerMultiTier:Clean;ClienteMultiTier:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ServerMultiTier:Make;ClienteMultiTier:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

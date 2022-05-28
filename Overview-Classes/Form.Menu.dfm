@@ -76,6 +76,15 @@ object frmMenu: TfrmMenu
       TabOrder = 5
       OnClick = ButtonStackEHeapClick
     end
+    object ButtonHash: TButton
+      Left = 1
+      Top = 265
+      Width = 248
+      Height = 88
+      Caption = 'Hash'
+      TabOrder = 6
+      OnClick = ButtonHashClick
+    end
   end
   object StatusBarContato: TStatusBar
     Left = 0

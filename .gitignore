@@ -86,3 +86,7 @@ modules/
 /Multi-Camada/Server/images
 /Multi-Camada/Win32/Debug
 /Multi-Camada/Server/templates
+css
+images
+js
+templates

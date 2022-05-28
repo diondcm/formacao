@@ -12,7 +12,8 @@ uses
   Form.Login in 'Form.Login.pas' {frmLogin},
   Form.Instancia in 'Form.Instancia.pas' {frmInstancia},
   Form.StackEHeap in 'Form.StackEHeap.pas' {frmStackEHeap},
-  Form.Seleciona.Color in 'Form.Seleciona.Color.pas' {frmSelecionaColor};
+  Form.Seleciona.Color in 'Form.Seleciona.Color.pas' {frmSelecionaColor},
+  Form.Teste.Hash in 'Form.Teste.Hash.pas' {frmTesteHash};
 
 {$R *.res}
 

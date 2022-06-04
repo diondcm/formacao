@@ -3,12 +3,22 @@ unit Classes.Tipos;
 interface
 
 uses
-  System.DateUtils;
+  System.DateUtils, System.Hash, System.Classes, System.SysUtils;
 
 const
   RETORNO_OK = 'OK'; // ''
+  LOGO_CLIENTE = 'LOGO_CLIENTE';
+  EXE_SERVER = 'EXE_SERVER';
+  EXE_SERVER_BASE64 = EXE_SERVER + '_BASE64';
+  LOGO_NOVO = 'LOGO_NOVO';
 
 type
+  THashArquivo = class
+  public
+    class function GetFileHash(nomeArquivo: string): string;
+  end;
+
+
   TDataRetorno = class
   private
     FExemploISO8601: string;
@@ -37,6 +47,15 @@ end;
 function TDataRetorno.GetAsUnix: Int64;
 begin
   Result := DateTimeToUnix(FData);
+end;
+
+{ THashArquivo }
+
+class function THashArquivo.GetFileHash(nomeArquivo: string): string;
+begin
+  var stm: TFileStream := TFileStream.Create(nomeArquivo, fmOpenRead);
+  Result := THashSHA1.GetHashString(stm);
+  stm.Free;
 end;
 
 end.

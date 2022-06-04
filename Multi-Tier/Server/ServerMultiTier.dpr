@@ -13,7 +13,12 @@ uses
   Data.Validacao in '..\RegraNegocio\Data.Validacao.pas' {dmdValidacao: TDataModule},
   Data.Cliente in '..\RegraNegocio\Data.Cliente.pas' {dmdCliente: TDataModule},
   Classes.Tipos in '..\RegraNegocio\Classes.Tipos.pas',
-  SM.Threads in 'SM.Threads.pas' {smThreads: TDSServerModule};
+  SM.Threads in 'SM.Threads.pas' {smThreads: TDSServerModule},
+  SM.Arquivos in 'SM.Arquivos.pas' {smArquivos: TDSServerModule},
+  SM.BlockChain in 'SM.BlockChain.pas' {smBlockChain: TDSServerModule},
+  Pkg.Json.DTO in '..\RegraNegocio\Pkg.Json.DTO.pas',
+  Classes.BlockChain in '..\RegraNegocio\Classes.BlockChain.pas',
+  Classes.BlockIntern in '..\RegraNegocio\Classes.BlockIntern.pas';
 
 {$R *.res}
 

@@ -9,7 +9,21 @@ uses
   DataSnap.DSAuth,
   Datasnap.DSProxyJavaScript, IPPeerServer, Datasnap.DSMetadata,
   Datasnap.DSServerMetadata, Datasnap.DSClientMetadata, Datasnap.DSCommonServer,
-  Datasnap.DSHTTP, SM.Threads;
+  Datasnap.DSHTTP, SM.Threads, SM.Arquivos, SM.BlockChain, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Phys, FireDAC.Comp.Client,
+  Datasnap.DSTCPServerTransport;
+
+// Para pool de Threads
+// Datasnap.DSTCPServerTransport
+//  object DSTCPServerTransport1: TDSTCPServerTransport
+//    MaxThreads = 3
+//    Server = DSServer1
+//    Filters = <>
+//    Left = 480
+//    Top = 40
+//  end
+
 
 type
   TWebModule1 = class(TWebModule)
@@ -22,6 +36,8 @@ type
     DSProxyGenerator1: TDSProxyGenerator;
     DSServerMetaDataProvider1: TDSServerMetaDataProvider;
     DSServerClassThreads: TDSServerClass;
+    DSServerClassArquivos: TDSServerClass;
+    DSServerClassBlockChain: TDSServerClass;
     procedure DSServerClass1GetClass(DSServerClass: TDSServerClass;
       var PersistentClass: TPersistentClass);
     procedure ServerFunctionInvokerHTMLTag(Sender: TObject; Tag: TTag;
@@ -35,6 +51,10 @@ type
       var Handled: Boolean);
     procedure WebModuleCreate(Sender: TObject);
     procedure DSServerClassThreadsGetClass(DSServerClass: TDSServerClass;
+      var PersistentClass: TPersistentClass);
+    procedure DSServerClassArquivosGetClass(DSServerClass: TDSServerClass;
+      var PersistentClass: TPersistentClass);
+    procedure DSServerClassBlockChainGetClass(DSServerClass: TDSServerClass;
       var PersistentClass: TPersistentClass);
   private
     { Private declarations }
@@ -58,6 +78,18 @@ procedure TWebModule1.DSServerClass1GetClass(
   DSServerClass: TDSServerClass; var PersistentClass: TPersistentClass);
 begin
   PersistentClass := SM.Geral.TsmGeral;
+end;
+
+procedure TWebModule1.DSServerClassArquivosGetClass(
+  DSServerClass: TDSServerClass; var PersistentClass: TPersistentClass);
+begin
+  PersistentClass := SM.Arquivos.TsmArquivos;
+end;
+
+procedure TWebModule1.DSServerClassBlockChainGetClass(
+  DSServerClass: TDSServerClass; var PersistentClass: TPersistentClass);
+begin
+  PersistentClass := SM.BlockChain.TsmBlockChain;
 end;
 
 procedure TWebModule1.DSServerClassThreadsGetClass(

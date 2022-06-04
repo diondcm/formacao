@@ -18,8 +18,8 @@ object WebModule1: TWebModule1
       OnAction = WebModuleDefaultAction
     end>
   BeforeDispatch = WebModuleBeforeDispatch
-  Height = 434
-  Width = 751
+  Height = 382
+  Width = 759
   PixelsPerInch = 120
   object DSServer1: TDSServer
     Left = 96
@@ -108,5 +108,17 @@ object WebModule1: TWebModule1
     Server = DSServer1
     Left = 320
     Top = 112
+  end
+  object DSServerClassArquivos: TDSServerClass
+    OnGetClass = DSServerClassArquivosGetClass
+    Server = DSServer1
+    Left = 312
+    Top = 176
+  end
+  object DSServerClassBlockChain: TDSServerClass
+    OnGetClass = DSServerClassBlockChainGetClass
+    Server = DSServer1
+    Left = 368
+    Top = 240
   end
 end

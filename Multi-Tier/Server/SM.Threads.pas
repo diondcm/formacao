@@ -12,6 +12,9 @@ uses
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
+// Connection Deff
+// https://docwiki.embarcadero.com/CodeExamples/Sydney/en/FireDAC.ConnectionDefs_Sample
+
 type
   TsmThreads = class(TDSServerModule)
     FDConnection: TFDConnection;

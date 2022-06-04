@@ -2,8 +2,8 @@ object frmPrincipalServer: TfrmPrincipalServer
   Left = 271
   Top = 114
   Caption = 'Server Multi Tier'
-  ClientHeight = 235
-  ClientWidth = 399
+  ClientHeight = 418
+  ClientWidth = 754
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -56,6 +56,18 @@ object frmPrincipalServer: TfrmPrincipalServer
     Caption = 'Open Browser'
     TabOrder = 3
     OnClick = ButtonOpenBrowserClick
+  end
+  object Memo1: TMemo
+    Left = 8
+    Top = 184
+    Width = 738
+    Height = 226
+    Lines.Strings = (
+      'Para Deploy no IIS:'
+      
+        'https://docwiki.embarcadero.com/RADStudio/Sydney/en/Tutorial:_Da' +
+        'taSnap_Application_Using_an_ISAPI_DLL_Server')
+    TabOrder = 4
   end
   object ApplicationEvents1: TApplicationEvents
     OnIdle = ApplicationEvents1Idle

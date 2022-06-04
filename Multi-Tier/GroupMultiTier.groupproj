@@ -9,6 +9,9 @@
         <Projects Include="Client\ClienteMultiTier.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="IIS\IIS.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="ClienteMultiTier:Make">
         <MSBuild Projects="Client\ClienteMultiTier.dproj" Targets="Make"/>
     </Target>
+    <Target Name="IIS">
+        <MSBuild Projects="IIS\IIS.dproj"/>
+    </Target>
+    <Target Name="IIS:Clean">
+        <MSBuild Projects="IIS\IIS.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="IIS:Make">
+        <MSBuild Projects="IIS\IIS.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="ServerMultiTier;ClienteMultiTier"/>
+        <CallTarget Targets="ServerMultiTier;ClienteMultiTier;IIS"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="ServerMultiTier:Clean;ClienteMultiTier:Clean"/>
+        <CallTarget Targets="ServerMultiTier:Clean;ClienteMultiTier:Clean;IIS:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="ServerMultiTier:Make;ClienteMultiTier:Make"/>
+        <CallTarget Targets="ServerMultiTier:Make;ClienteMultiTier:Make;IIS:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

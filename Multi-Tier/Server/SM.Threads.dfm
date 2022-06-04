@@ -1,7 +1,7 @@
 object smThreads: TsmThreads
   OnCreate = DSServerModuleCreate
   OnDestroy = DSServerModuleDestroy
-  Height = 326
+  Height = 251
   Width = 486
   PixelsPerInch = 120
   object FDConnection: TFDConnection

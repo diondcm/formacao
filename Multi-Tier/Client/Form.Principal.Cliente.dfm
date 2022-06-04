@@ -18,7 +18,7 @@ object frmPrincipalCliente: TfrmPrincipalCliente
     Top = 0
     Width = 870
     Height = 594
-    ActivePage = TabValidacao
+    ActivePage = TabBlockChain
     Align = alClient
     TabOrder = 0
     object TabValidacao: TTabSheet
@@ -87,9 +87,6 @@ object frmPrincipalCliente: TfrmPrincipalCliente
           item
             Width = 50
           end>
-        ExplicitLeft = 432
-        ExplicitTop = 272
-        ExplicitWidth = 0
       end
       object PanelRequest: TPanel
         Left = 0
@@ -125,8 +122,145 @@ object frmPrincipalCliente: TfrmPrincipalCliente
         Height = 386
         Align = alClient
         TabOrder = 3
+      end
+    end
+    object TabArquivos: TTabSheet
+      Caption = 'Arquivos'
+      ImageIndex = 1
+      object Image1: TImage
+        Left = 16
+        Top = 176
+        Width = 249
+        Height = 353
+      end
+      object ButtonDownloadImagem: TButton
+        Left = 16
+        Top = 40
+        Width = 75
+        Height = 25
+        Caption = 'Imagem'
+        TabOrder = 0
+        OnClick = ButtonDownloadImagemClick
+      end
+      object Button2: TButton
+        Left = 480
+        Top = 40
+        Width = 75
+        Height = 25
+        Caption = 'Upload'
+        TabOrder = 1
+        OnClick = Button2Click
+      end
+      object ButtonDownloadBinario: TButton
+        Left = 190
+        Top = 40
+        Width = 75
+        Height = 25
+        Caption = 'Bin'#225'rio'
+        TabOrder = 2
+        OnClick = ButtonDownloadBinarioClick
+      end
+      object MemoArquivos: TMemo
+        Left = 296
+        Top = 176
+        Width = 249
+        Height = 353
+        TabOrder = 3
+      end
+    end
+    object TabBlockChain: TTabSheet
+      Caption = 'BlockChain'
+      ImageIndex = 2
+      object Splitter1: TSplitter
+        Left = 388
+        Top = 47
+        Height = 517
+        ExplicitLeft = 432
+        ExplicitTop = 232
+        ExplicitHeight = 100
+      end
+      object MemoDados: TMemo
+        AlignWithMargins = True
+        Left = 3
+        Top = 50
+        Width = 382
+        Height = 511
+        Align = alLeft
+        Lines.Strings = (
+          'MemoDados')
+        TabOrder = 0
+      end
+      object Panel1: TPanel
+        AlignWithMargins = True
+        Left = 3
+        Top = 3
+        Width = 856
+        Height = 41
+        Align = alTop
+        TabOrder = 1
         ExplicitLeft = 336
-        ExplicitTop = 240
+        ExplicitTop = 264
+        ExplicitWidth = 185
+        object ButtonGetBlock: TButton
+          AlignWithMargins = True
+          Left = 4
+          Top = 4
+          Width = 101
+          Height = 33
+          Align = alLeft
+          Caption = 'Get Block'
+          TabOrder = 0
+          OnClick = ButtonGetBlockClick
+        end
+        object EditBlock: TEdit
+          AlignWithMargins = True
+          Left = 111
+          Top = 6
+          Width = 482
+          Height = 29
+          Margins.Top = 5
+          Margins.Bottom = 5
+          Align = alLeft
+          TabOrder = 1
+          Text = '0000000000000bae09a7a393a8acded75aa67e46cb81f7acaa5ad94f9eacd103'
+        end
+        object ButtonGetBlockIntern: TButton
+          AlignWithMargins = True
+          Left = 599
+          Top = 4
+          Width = 114
+          Height = 33
+          Align = alLeft
+          Caption = 'Get Block Interno'
+          TabOrder = 2
+          OnClick = ButtonGetBlockInternClick
+        end
+        object ButtonListaBlock: TButton
+          AlignWithMargins = True
+          Left = 719
+          Top = 4
+          Width = 114
+          Height = 33
+          Align = alLeft
+          Caption = 'Get Lista Block'
+          TabOrder = 3
+          OnClick = ButtonListaBlockClick
+          ExplicitLeft = 743
+          ExplicitTop = 8
+        end
+      end
+      object MemoJson: TMemo
+        AlignWithMargins = True
+        Left = 394
+        Top = 50
+        Width = 465
+        Height = 511
+        Align = alClient
+        Lines.Strings = (
+          'MemoJson')
+        TabOrder = 2
+        ExplicitLeft = 608
+        ExplicitTop = 248
         ExplicitWidth = 185
         ExplicitHeight = 89
       end
@@ -138,5 +272,10 @@ object frmPrincipalCliente: TfrmPrincipalCliente
     OnTimer = TimerStatusServerTimer
     Left = 748
     Top = 90
+  end
+  object OpenDialogUpload: TOpenDialog
+    Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
+    Left = 504
+    Top = 104
   end
 end

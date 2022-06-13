@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{2324C11A-25C3-4F94-A60E-240012355284}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TestePacotes.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="HashGen.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PkgHashGen.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TestePacotes">
+        <MSBuild Projects="TestePacotes.dproj"/>
+    </Target>
+    <Target Name="TestePacotes:Clean">
+        <MSBuild Projects="TestePacotes.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestePacotes:Make">
+        <MSBuild Projects="TestePacotes.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="HashGen">
+        <MSBuild Projects="HashGen.dproj"/>
+    </Target>
+    <Target Name="HashGen:Clean">
+        <MSBuild Projects="HashGen.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HashGen:Make">
+        <MSBuild Projects="HashGen.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PkgHashGen">
+        <MSBuild Projects="PkgHashGen.dproj"/>
+    </Target>
+    <Target Name="PkgHashGen:Clean">
+        <MSBuild Projects="PkgHashGen.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PkgHashGen:Make">
+        <MSBuild Projects="PkgHashGen.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TestePacotes;HashGen;PkgHashGen"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TestePacotes:Clean;HashGen:Clean;PkgHashGen:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TestePacotes:Make;HashGen:Make;PkgHashGen:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

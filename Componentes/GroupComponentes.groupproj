@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{27FA23CD-1800-48F1-9B8D-DCEF56BD8CBB}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="PanelSimples\pkgPanelSimples.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DateDB\pkgDateDB.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="AppExemplo\AppExemplo.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="pkgPanelSimples">
+        <MSBuild Projects="PanelSimples\pkgPanelSimples.dproj"/>
+    </Target>
+    <Target Name="pkgPanelSimples:Clean">
+        <MSBuild Projects="PanelSimples\pkgPanelSimples.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pkgPanelSimples:Make">
+        <MSBuild Projects="PanelSimples\pkgPanelSimples.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pkgDateDB">
+        <MSBuild Projects="DateDB\pkgDateDB.dproj"/>
+    </Target>
+    <Target Name="pkgDateDB:Clean">
+        <MSBuild Projects="DateDB\pkgDateDB.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pkgDateDB:Make">
+        <MSBuild Projects="DateDB\pkgDateDB.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="AppExemplo">
+        <MSBuild Projects="AppExemplo\AppExemplo.dproj"/>
+    </Target>
+    <Target Name="AppExemplo:Clean">
+        <MSBuild Projects="AppExemplo\AppExemplo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AppExemplo:Make">
+        <MSBuild Projects="AppExemplo\AppExemplo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="pkgPanelSimples;pkgDateDB;AppExemplo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="pkgPanelSimples:Clean;pkgDateDB:Clean;AppExemplo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="pkgPanelSimples:Make;pkgDateDB:Make;AppExemplo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

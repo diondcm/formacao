@@ -9,15 +9,16 @@ uses
 
 
 type
+  TSentidoMovimento = (Direita, Esquerda);
+
   TCardViewer = class(TCustomPanel)
   public const
     PROPORCAO_IMAGEM_PADRAO = 8;
     MARGEM_DEFAULT = 20;
-  protected
-    procedure Resize; override;
-    procedure DoImagemClick(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    INTERVALO_SEGUNDOS_DEFAULT = 5;
   private
     FProporcaoPrincipal: Integer;
+    FTimer: TTimer;
     FImagemPrincipal: TImage;
     FImagemDireita: TImage;
     FImagemEsquerda: TImage;
@@ -25,20 +26,36 @@ type
     FMargemVertical: Integer;
     FSobre: string;
     FListaImagens: TObjectList<TPicture>;
+    FSentidoMovimento: TSentidoMovimento;
     procedure ConfiguraVisualImagens;
     procedure SelecionaImagemEsquerda;
     procedure SelecionaImagemDireita;
     procedure SetProporcaoPrincipal(const Value: Integer);
+    procedure IncImageIndex(Img: TImage);
+    procedure DecImageIndex(Img: TImage);
+    procedure AtualizaImagensPorIndex;
+    procedure DoTimer(Sender: TObject);
+    function GetApresentacao: Boolean;
+    procedure SetApresentacao(const Value: Boolean);
+    function GetIntervalo: Cardinal;
+    procedure SetIntervalo(const Value: Cardinal);
+  protected
+    procedure Resize; override;
+    procedure DoImagemClick(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure CreateParams(var Params: TCreateParams); override;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    procedure CarregaImagens;
+    procedure CarregaImagens(dir: string = '');
     property ListaImagens: TObjectList<TPicture> read FListaImagens;
   published
     property ProporcaoPrincipal: Integer read FProporcaoPrincipal write SetProporcaoPrincipal default PROPORCAO_IMAGEM_PADRAO;
     property MargemHorizontal: Integer read FMargemHorizontal write FMargemHorizontal default MARGEM_DEFAULT;
     property MargemVertical: Integer read FMargemVertical write FMargemVertical default MARGEM_DEFAULT;
+    property Apresentacao: Boolean read GetApresentacao write SetApresentacao default False;
+    property Intervalo: Cardinal read GetIntervalo write SetIntervalo default INTERVALO_SEGUNDOS_DEFAULT;
     property Sobre: string read FSobre; // write SetSobre; Removido para não armazenar valor
+    property SentidoMovimento: TSentidoMovimento read FSentidoMovimento write FSentidoMovimento default TSentidoMovimento.Direita;
   end;
 
 
@@ -46,32 +63,56 @@ implementation
 
 { TCardViewer }
 
-procedure TCardViewer.CarregaImagens;
-var
-  img: TObject;
+procedure TCardViewer.AtualizaImagensPorIndex;
+begin
+  FImagemEsquerda.Picture.Assign(FListaImagens.Items[FImagemEsquerda.Tag]);
+  FImagemPrincipal.Picture.Assign(FListaImagens.Items[FImagemPrincipal.Tag]);
+  FImagemDireita.Picture.Assign(FListaImagens.Items[FImagemDireita.Tag]);
+end;
+
+procedure TCardViewer.CarregaImagens(dir: string);
 begin
   if (csDesigning in Self.ComponentState) then
   begin
     Exit;
   end;
 
-  if FListaImagens.Count = 0 then
+  if dir <> '' then
   begin
-    FImagemPrincipal.Picture.LoadFromFile('C:\Users\Dion Mai\Pictures\Saved Pictures\I1.jpg');
-    FImagemEsquerda.Picture.LoadFromFile('C:\Users\Dion Mai\Pictures\Saved Pictures\I2.jpg');
-    FImagemDireita.Picture.LoadFromFile('C:\Users\Dion Mai\Pictures\Saved Pictures\I3.jpg');
-  end else begin
+    FListaImagens.Clear;
 
-    for var localPic: TPicture in FListaImagens do
+    var arqs: TStringDynArray := TDirectory.GetFiles(dir); // '*.jpg'
+    for var arq: string in arqs do
     begin
-      if FListaImagens.IndexOf(localPic) = 0 then
-        FImagemEsquerda.Picture.Assign(localPic);
+      if (ExtractFileExt(arq) = '.jpg')
+        or (ExtractFileExt(arq) = '.bmp')
+        or (ExtractFileExt(arq) = '.png') then
+      begin
+        var pic: TPicture := TPicture.Create;
+        pic.LoadFromFile(arq);
+        FListaImagens.Add(pic);
+      end;
+    end;
+  end;
 
-      if FListaImagens.IndexOf(localPic) = 1 then
-        FImagemPrincipal.Picture.Assign(localPic);
+  for var localPic: TPicture in FListaImagens do
+  begin
+    if FListaImagens.IndexOf(localPic) = 0 then
+    begin
+      FImagemEsquerda.Picture.Assign(localPic);
+      FImagemEsquerda.Tag := 0;
+    end;
 
-      if FListaImagens.IndexOf(localPic) = 2 then
-        FImagemDireita.Picture.Assign(localPic);
+    if FListaImagens.IndexOf(localPic) = 1 then
+    begin
+      FImagemPrincipal.Picture.Assign(localPic);
+      FImagemPrincipal.Tag := 1;
+    end;
+
+    if FListaImagens.IndexOf(localPic) = 2 then
+    begin
+      FImagemDireita.Picture.Assign(localPic);
+      FImagemDireita.Tag := 2;
     end;
   end;
 end;
@@ -120,8 +161,29 @@ begin
   FImagemDireita.Cursor := crHandPoint;
   FImagemDireita.OnMouseDown := DoImagemClick;
 
+  FTimer := TTimer.Create(Self);
+  FTimer.Enabled := False;
+  FTimer.Interval := INTERVALO_SEGUNDOS_DEFAULT * 1000;
+  FTimer.OnTimer := DoTimer;
+
   ConfiguraVisualImagens;
   CarregaImagens;
+end;
+
+procedure TCardViewer.CreateParams(var Params: TCreateParams);
+begin
+  inherited;
+  Caption := '';
+  ShowCaption := False;
+end;
+
+procedure TCardViewer.DecImageIndex(Img: TImage);
+begin
+  Img.Tag := Img.Tag - 1;
+  if Img.Tag < 0 then
+  begin
+    Img.Tag := FListaImagens.Count -1;
+  end;
 end;
 
 destructor TCardViewer.Destroy;
@@ -144,6 +206,33 @@ begin
   end;
 end;
 
+procedure TCardViewer.DoTimer(Sender: TObject);
+begin
+  case FSentidoMovimento of
+    Direita: SelecionaImagemDireita;
+    Esquerda: SelecionaImagemEsquerda;
+  end;
+end;
+
+function TCardViewer.GetApresentacao: Boolean;
+begin
+  Result := FTimer.Enabled;
+end;
+
+function TCardViewer.GetIntervalo: Cardinal;
+begin
+  Result := FTimer.Interval div 1000;
+end;
+
+procedure TCardViewer.IncImageIndex(Img: TImage);
+begin
+  Img.Tag := Img.Tag + 1;
+  if Img.Tag > (FListaImagens.Count - 1) then
+  begin
+    Img.Tag := 0;
+  end;
+end;
+
 procedure TCardViewer.Resize;
 begin
   inherited;
@@ -158,11 +247,11 @@ begin
     Exit;  // Sem Imagem
   end;
 
-  var tempImage: TPicture := TPicture.Create;
-  tempImage.Assign(FImagemPrincipal.Picture);
-  FImagemPrincipal.Picture.Assign(FImagemDireita.Picture);
-  FImagemDireita.Picture.Assign(tempImage);
-  tempImage.Free;
+  IncImageIndex(FImagemDireita);
+  IncImageIndex(FImagemPrincipal);
+  IncImageIndex(FImagemEsquerda);
+
+  AtualizaImagensPorIndex;
 end;
 
 procedure TCardViewer.SelecionaImagemEsquerda;
@@ -172,11 +261,21 @@ begin
     Exit;  // Sem Imagem
   end;
 
-  var tempImage: TPicture := TPicture.Create;
-  tempImage.Assign(FImagemPrincipal.Picture);
-  FImagemPrincipal.Picture.Assign(FImagemEsquerda.Picture);
-  FImagemEsquerda.Picture.Assign(tempImage);
-  tempImage.Free;
+  DecImageIndex(FImagemDireita);
+  DecImageIndex(FImagemPrincipal);
+  DecImageIndex(FImagemEsquerda);
+
+  AtualizaImagensPorIndex;
+end;
+
+procedure TCardViewer.SetApresentacao(const Value: Boolean);
+begin
+  FTimer.Enabled := Value;
+end;
+
+procedure TCardViewer.SetIntervalo(const Value: Cardinal);
+begin
+  FTimer.Interval := Value * 1000;
 end;
 
 procedure TCardViewer.SetProporcaoPrincipal(const Value: Integer);

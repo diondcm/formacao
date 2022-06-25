@@ -67,6 +67,48 @@ object frmTestaCardView: TfrmTestaCardView
       TabOrder = 3
       OnClick = ButtonCarregaListaClick
     end
+    object CheckBoxApresentacao: TCheckBox
+      Left = 796
+      Top = 1
+      Width = 97
+      Height = 39
+      Align = alRight
+      Caption = 'Apresenta'#231#227'o'
+      TabOrder = 4
+      OnClick = CheckBoxApresentacaoClick
+    end
+    object SpinEditIntervalo: TSpinEdit
+      AlignWithMargins = True
+      Left = 896
+      Top = 6
+      Width = 45
+      Height = 29
+      Margins.Top = 5
+      Margins.Bottom = 5
+      Align = alRight
+      MaxValue = 0
+      MinValue = 0
+      TabOrder = 5
+      Value = 5
+    end
+    object RadioButtonParaDireita: TRadioButton
+      Left = 696
+      Top = 1
+      Width = 100
+      Height = 39
+      Align = alRight
+      Caption = 'Para direita'
+      TabOrder = 6
+    end
+    object RadioButtonParaEsquerda: TRadioButton
+      Left = 592
+      Top = 1
+      Width = 104
+      Height = 39
+      Align = alRight
+      Caption = 'Para Esquerda'
+      TabOrder = 7
+    end
   end
   object PanelMensagem: TPanel
     Left = 0

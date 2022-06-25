@@ -9,6 +9,9 @@
         <Projects Include="DateDB\pkgDateDB.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="CardView\pkgCardView.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="AppExemplo\AppExemplo.dproj">
             <Dependencies/>
         </Projects>
@@ -38,6 +41,15 @@
     <Target Name="pkgDateDB:Make">
         <MSBuild Projects="DateDB\pkgDateDB.dproj" Targets="Make"/>
     </Target>
+    <Target Name="pkgCardView">
+        <MSBuild Projects="CardView\pkgCardView.dproj"/>
+    </Target>
+    <Target Name="pkgCardView:Clean">
+        <MSBuild Projects="CardView\pkgCardView.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pkgCardView:Make">
+        <MSBuild Projects="CardView\pkgCardView.dproj" Targets="Make"/>
+    </Target>
     <Target Name="AppExemplo">
         <MSBuild Projects="AppExemplo\AppExemplo.dproj"/>
     </Target>
@@ -48,13 +60,13 @@
         <MSBuild Projects="AppExemplo\AppExemplo.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="pkgPanelSimples;pkgDateDB;AppExemplo"/>
+        <CallTarget Targets="pkgPanelSimples;pkgDateDB;pkgCardView;AppExemplo"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="pkgPanelSimples:Clean;pkgDateDB:Clean;AppExemplo:Clean"/>
+        <CallTarget Targets="pkgPanelSimples:Clean;pkgDateDB:Clean;pkgCardView:Clean;AppExemplo:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="pkgPanelSimples:Make;pkgDateDB:Make;AppExemplo:Make"/>
+        <CallTarget Targets="pkgPanelSimples:Make;pkgDateDB:Make;pkgCardView:Make;AppExemplo:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

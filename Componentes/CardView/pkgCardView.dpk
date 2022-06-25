@@ -1,0 +1,43 @@
+package pkgCardView;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Card Viewer - Visualizador de imagens'}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vclimg,
+  vcl,
+  designide;
+
+contains
+  Classes.Card.Viewer in 'Classes.Card.Viewer.pas',
+  Classes.Registra.Card.Viewer in 'Classes.Registra.Card.Viewer.pas',
+  Form.Sobre in 'Form.Sobre.pas' {frmSobre},
+  Classes.Editor.Sobre in 'Classes.Editor.Sobre.pas';
+
+end.

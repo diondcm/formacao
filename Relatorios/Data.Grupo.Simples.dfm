@@ -1,6 +1,6 @@
 object dmdGrupoSimples: TdmdGrupoSimples
-  Height = 660
-  Width = 924
+  Height = 465
+  Width = 789
   PixelsPerInch = 120
   object memCustomer: TFDMemTable
     Active = True

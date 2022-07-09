@@ -50,5 +50,15 @@ object frmPrincipal: TfrmPrincipal
       TabOrder = 2
       OnClick = ButtonFuncionalidadesClick
     end
+    object ButtonMasterDetailDetail: TButton
+      AlignWithMargins = True
+      Left = 4
+      Top = 82
+      Width = 176
+      Height = 72
+      Caption = 'Master-Detail-Detail'
+      TabOrder = 3
+      OnClick = ButtonMasterDetailDetailClick
+    end
   end
 end

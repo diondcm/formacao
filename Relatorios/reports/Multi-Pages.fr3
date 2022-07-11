@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="2022.2.7" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="167935" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="44751,3854333796" ReportOptions.Description.Text="" ReportOptions.LastChange="44753,301921331" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
+  <Datasets>
+    <item DataSet="frxDBCustomer" DataSetName="Customer"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" HGuides.Text="" VGuides.Text="" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" HGuides.Text="" VGuides.Text="" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" Frame.Typ="0" MirrorMode="0">
+    <TfrxPictureView Name="Picture1" AllowVectorExport="True" Left="83,14966" Top="185,19697" Width="517,79561" Height="714,33117" Frame.Typ="0" HightQuality="False" Transparent="False" TransparentColor="16777215"/>
+    <TfrxMemoView Name="Memo1" AllowVectorExport="True" Left="143,62214" Top="64,25201" Width="385,51206" Height="86,92919" Font.Charset="1" Font.Color="255" Font.Height="-48" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Página de capa"/>
+  </TfrxReportPage>
+  <TfrxReportPage Name="Page2" HGuides.Text="" VGuides.Text="" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" Frame.Typ="0" MirrorMode="0">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="124,72449" Left="0" Top="18,89765" Width="718,1107">
+      <TfrxMemoView Name="Memo2" AllowVectorExport="True" Left="215,43321" Top="37,7953" Width="309,92146" Height="45,35436" Font.Charset="1" Font.Color="65280" Font.Height="-35" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Lista de clientes"/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="22,67718" Left="0" Top="204,09462" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="frxDBCustomer" DataSetName="Customer" RowCount="0">
+      <TfrxMemoView Name="CustomerCustNo" IndexTag="1" AllowVectorExport="True" Left="15,11812" Top="0" Width="79,37013" Height="18,89765" DataField="CustNo" DataSet="frxDBCustomer" DataSetName="Customer" Frame.Typ="0" Text="[Customer.&#34;CustNo&#34;]"/>
+      <TfrxMemoView Name="CustomerCompany" IndexTag="1" AllowVectorExport="True" Left="143,62214" Top="0" Width="238,11039" Height="18,89765" DataField="Company" DataSet="frxDBCustomer" DataSetName="Customer" Frame.Typ="0" Text="[Customer.&#34;Company&#34;]"/>
+      <TfrxMemoView Name="CustomerCountry" IndexTag="1" AllowVectorExport="True" Left="438,42548" Top="0" Width="158,74026" Height="18,89765" DataField="Country" DataSet="frxDBCustomer" DataSetName="Customer" Frame.Typ="0" Text="[Customer.&#34;Country&#34;]"/>
+    </TfrxMasterData>
+    <TfrxReportSummary Name="ReportSummary1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="177,63791" Left="0" Top="287,24428" Width="718,1107">
+      <TfrxMemoView Name="Memo3" AllowVectorExport="True" Left="241,88992" Top="3,77953" Width="472,44125" Height="45,35436" Font.Charset="1" Font.Color="0" Font.Height="-35" Font.Name="Arial" Font.Style="1" Frame.Typ="0" HAlign="haRight" ParentFont="False" Text="[COUNT(MasterData1)] clientes listados"/>
+    </TfrxReportSummary>
+  </TfrxReportPage>
+  <TfrxReportPage Name="Page3" HGuides.Text="" VGuides.Text="" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" Frame.Typ="0" MirrorMode="0">
+    <TfrxPictureView Name="Picture2" AllowVectorExport="True" Left="52,91342" Top="90,70872" Width="616,06339" Height="944,8825" Frame.Typ="0" HightQuality="False" Transparent="False" TransparentColor="16777215"/>
+  </TfrxReportPage>
+</TfrxReport>
